@@ -1,22 +1,10 @@
 import menuList from '/menu.json';
-import menuTemplates from './templates/libs.hbs';
+import menuTemplates from './templates/menu.hbs';
+import { refs } from './js/refs.js';
+import { onChangeTheme } from './js/hundler.js';
 import './styles.css';
 
-// const imagesItemEl = document.createElement('li');
-// imagesItemEl.classList.add('gallery__item');
-// const imagesLinkEl = document.createElement('a');
-// imagesLinkEl.classList.add('gallery__link');
-// imagesLinkEl.href = `${galleryItem.original}`;
-// imagesLinkEl.insertAdjacentHTML(
-//   'afterbegin',
-//   `<img class= "gallery__image" src = ${galleryItem.preview} data-source = ${galleryItem.original} alt = ${galleryItem.description} width = 100%>`,
-// );
+const markup = menuList.map(menuTemplates).join('');
+refs.menu.insertAdjacentHTML('beforeend', markup);
 
-// console.log(menuTemplates);
-const menu = document.querySelector('.menu');
-const markup =
-  // menuTemplates(menuList);
-  menuList.map(menuTemplates).join('');
-menu.insertAdjacentHTML('beforeend', markup);
-
-// console.log(menu);
+refs.switch.addEventListener('change', onChangeTheme);
